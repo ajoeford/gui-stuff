@@ -1,6 +1,7 @@
 #GUI layout basics
 
 from tkinter import *
+from tkinter import ttk
 
 def main():
     root = Tk()
@@ -14,7 +15,7 @@ def gquit():
 class Major(Frame):
 
     def __init__(self, parent):
-        Frame.__init__(self, parent)
+        ttk.Frame.__init__(self, parent)
 
         self.parent = parent
         self.initUI()
@@ -23,7 +24,7 @@ class Major(Frame):
 
         self.parent.title("Blackbird poops")
 
-        self.frame1 = Frame(self, borderwidth=2, relief="sunken")
+        self.frame1 = ttk.Frame(self, borderwidth=2, relief="sunken")
 
         self.onevar = BooleanVar()
         self.twovar = BooleanVar()
@@ -33,13 +34,13 @@ class Major(Frame):
         self.twovar.set(False)
         self.threevar.set(True)
 
-        self.namelbl = Label(self.frame1, text="Name")
-        self.name = Entry(self.frame1)
-        self.one = Checkbutton(self.frame1, text="One", variable=self.onevar, onvalue=True)
-        self.two = Checkbutton(self.frame1, text="Two", variable=self.twovar, onvalue=True)
-        self.three = Checkbutton(self.frame1, text="Three", variable=self.threevar, onvalue=True)
-        self.ok = Button(self, text="Okay")
-        self.quitB = Button(self, text="Quit", command=gquit)
+        self.namelbl = ttk.Label(self.frame1, text="Name")
+        self.name = ttk.Entry(self.frame1)
+        self.one = ttk.Checkbutton(self.frame1, text="One", variable=self.onevar, onvalue=True)
+        self.two = ttk.Checkbutton(self.frame1, text="Two", variable=self.twovar, onvalue=True)
+        self.three = ttk.Checkbutton(self.frame1, text="Three", variable=self.threevar, onvalue=True)
+        self.ok = ttk.Button(self, text="Okay")
+        self.quitB = ttk.Button(self, text="Quit", command=gquit)
 
         self.grid(column=0, row=0, sticky=(N, S, E, W))
 
