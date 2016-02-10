@@ -8,6 +8,7 @@ root.geometry("640x480+400+400")
 def gquit():
     quit()
 
+#Change to classes
 content = ttk.Frame(root, padding=(3,3,12,12))
 frame1 = ttk.Frame(content, borderwidth=2, relief="sunken")
 
