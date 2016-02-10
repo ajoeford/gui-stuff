@@ -1,54 +1,68 @@
 #GUI layout basics
 
 from tkinter import *
-from tkinter import ttk
 
-root = Tk()
-root.geometry("640x480+400+400")
+def main():
+    root = Tk()
+    root.geometry("640x480+400+400")
+    content = Major(root)
+    root.mainloop()
 
 def gquit():
     quit()
 
-#Change to classes
-content = ttk.Frame(root, padding=(3,3,12,12))
-frame1 = ttk.Frame(content, borderwidth=2, relief="sunken")
+class Major(Frame):
 
-onevar= BooleanVar()
-twovar= BooleanVar()
-threevar= BooleanVar()
+    def __init__(self, parent):
+        Frame.__init__(self, parent)
 
-onevar.set(True)
-twovar.set(False)
-threevar.set(True)
+        self.parent = parent
+        self.initUI()
 
-namelbl = ttk.Label(frame1, text="Name")
-name = ttk.Entry(frame1)
-one = ttk.Checkbutton(frame1, text="One", variable=onevar, onvalue=True)
-two = ttk.Checkbutton(frame1, text="Two", variable=twovar, onvalue=True)
-three = ttk.Checkbutton(frame1, text="Three", variable=threevar, onvalue=True)
-ok = ttk.Button(content, text="Okay")
-quitB = ttk.Button(content, text="Quit", command=gquit)
+    def initUI(self):
 
-content.grid(column=0, row=0, sticky=(N, S, E, W))
+        self.parent.title("Blackbird poops")
 
-frame1.grid(column=1, row=0, columnspan=3, rowspan=2, sticky=(N, S, E, W))
-namelbl.grid(column=0, row=0, columnspan=2, sticky=(W))
-name.grid(column=0, row=1, columnspan=2, sticky=(N, E, W))
+        self.frame1 = Frame(self, borderwidth=2, relief="sunken")
 
-one.grid(column=0, row=3)
-two.grid(column=1, row=3)
-three.grid(column=2, row=3)
-ok.grid(column=0, row=0, sticky=(N, W), padx=5)
-quitB.grid(column=0, row=1, sticky=(N, W), padx=5, pady=5)
+        self.onevar = BooleanVar()
+        self.twovar = BooleanVar()
+        self.threevar = BooleanVar()
 
-root.columnconfigure(0, weight=1)
-root.rowconfigure(0, weight=1)
-content.columnconfigure(0, weight=0)
-content.columnconfigure(1, weight=0)
-content.columnconfigure(2, weight=0)
-content.columnconfigure(3, weight=1)
-content.rowconfigure(1, weight=1)
+        self.onevar.set(True)
+        self.twovar.set(False)
+        self.threevar.set(True)
 
-for child in frame1.winfo_children(): child.grid_configure(padx=5, pady=5)
+        self.namelbl = Label(self.frame1, text="Name")
+        self.name = Entry(self.frame1)
+        self.one = Checkbutton(self.frame1, text="One", variable=self.onevar, onvalue=True)
+        self.two = Checkbutton(self.frame1, text="Two", variable=self.twovar, onvalue=True)
+        self.three = Checkbutton(self.frame1, text="Three", variable=self.threevar, onvalue=True)
+        self.ok = Button(self, text="Okay")
+        self.quitB = Button(self, text="Quit", command=gquit)
 
-root.mainloop()
+        self.grid(column=0, row=0, sticky=(N, S, E, W))
+
+        self.frame1.grid(column=1, row=0, columnspan=3, rowspan=2, sticky=(N, S, E, W))
+        self.namelbl.grid(column=0, row=0, columnspan=2, sticky=(W))
+        self.name.grid(column=0, row=1, columnspan=2, sticky=(N, E, W))
+
+        self.one.grid(column=0, row=3)
+        self.two.grid(column=1, row=3)
+        self.three.grid(column=2, row=3)
+        self.ok.grid(column=0, row=0, sticky=(N, W), padx=5, pady=5)
+        self.quitB.grid(column=0, row=1, sticky=(N, W), padx=5)
+
+        self.parent.columnconfigure(0, weight=1)
+        self.parent.rowconfigure(0, weight=1)
+        self.columnconfigure(0, weight=0)
+        self.columnconfigure(1, weight=0)
+        self.columnconfigure(2, weight=0)
+        self.columnconfigure(3, weight=1)
+        self.rowconfigure(1, weight=1)
+
+        for child in self.frame1.winfo_children(): child.grid_configure(padx=5, pady=5)
+
+
+if __name__ == '__main__':
+    main()
