@@ -1,3 +1,4 @@
+#GUI layout basics
 
 from tkinter import *
 from tkinter import ttk
